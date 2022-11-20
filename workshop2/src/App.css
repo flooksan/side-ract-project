@@ -1,0 +1,53 @@
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.menu, .quiz {
+    width: 500px;
+    height: 500px;
+    color: white;
+    background:linear-gradient(to left top, #fffbc1, #f7da92, #f3b76b, #f0904e, #eb6440);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* ไม่ใส่ align-items center จะทำให้ ตัวปุ่มมันขยายเต็มจอเลย */
+    align-items: center;
+}
+
+.score {
+    width: 300px;
+    height: 300px;
+    background:linear-gradient(to right bottom, #eb6440, #fa5e78, #f16aaf, 
+    #d182dc, #9e9bf9, #6daeff, #35bcff, #00c8f3, #1fd3e0, #59dbc8, #8ae0b2, #b6e2a1);
+    color: white;
+    border-radius: 12px;
+}
+
+.menu button, .quiz button  {
+    width: 300px;
+    height: 50px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.score button {
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #f7da92;
+    color: azure;
+}
