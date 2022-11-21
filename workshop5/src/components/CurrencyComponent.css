@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to bottom, #1f6f8b, #1c829c, #1d96ab, #25abb8, 
+    #35bfc3, #2fc1c8, #29c3cc, #21c5d1, 
+    #00b5cf, #00a4cb, #1993c3, #3282b8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.money-img {
+    width: 220px;
+}
+
+.equal {
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.currency {
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.currency select {
+    padding: 10px 20px 10px 10px;
+    border: 1px #dedede;
+    font-size: 16px;
+    /* appearance: none; ซ่อนลูกศร drop down */
+}
+
+.currency input {
+    border: 0;
+    height: 40px;
+    size: 30px;
+    text-align: right;
+}
+
+/* เมื่อตอนที่คลิกและ focus ที่ตัว select กับล input จะขึ้นกรอบถูกวง แล้วเอามันออก */
+select:focus, input:focus {
+    outline: none;
+}
