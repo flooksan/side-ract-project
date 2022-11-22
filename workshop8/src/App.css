@@ -1,0 +1,103 @@
+:root {
+    --color-bg: #FFEAC7;
+    --color-bg-form: #636363;
+    --color-text: #6CA4D4;
+    --color-btn: #A4E0D5;
+    --color-btn-text: #383838;
+    --color-btn-delete: #FF7D63;
+    --color-btn-edit: #FFE99E;
+    --color-listbox: #9C9B97;
+}
+
+
+
+body {
+    font-family: 'Montserrat', sans-serif, 'Taviraj', serif;
+    background-color: #FFEAC7;
+    width: 100vh;
+    
+}
+
+button {
+    font-family: 'Taviraj', 'Montserrat';
+    text-align: center;
+    background-color: #A4E0D5;
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    color: var(--color-btn-text);
+    cursor: pointer;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1 {
+    color: #6CA4D4;
+    font-size: 3rem;
+    
+    
+}
+
+.container {
+    margin: 8rem 50%;
+    padding: 1.2rem;
+    width: 90vw;
+    max-width: 35rem;
+    background: var(--color-bg-form);
+    border-radius: 0.25rem;
+}
+
+
+.form-group {
+    display: flex;
+    justify-content: center;
+    
+    /* gap: 5px; */
+}
+
+.form-group input {
+    font-size: 0.9rem;
+    flex: 1 0 auto;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    padding: 0.25rem 1rem;
+    background-color: var(--color-listbox);
+    /* ใส่ box-shadow แล้ว list ดูมีมิติขึ้น */
+    box-shadow: 0 1px 3px; 
+    border-radius: 0px;
+    font-size: 1.1rem;
+}
+
+.btn-delete, .btn-edit {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-edit {
+    font-weight: 500;
+    background: var(--color-btn-edit);
+}
+.btn-delete {
+    font-weight: 500;
+    background: var(--color-btn-delete);
+}
+
+
+.form-modal {
+    display: flex;
+}
+.input-modal {
+    font-family: 'Montserrat','Taviraj';
+    font-size: 0.9rem;
+    flex: 1 0 auto;
+}
