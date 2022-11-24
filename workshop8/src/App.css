@@ -9,12 +9,17 @@
     --color-listbox: #9C9B97;
 }
 
+.root {
+    width: 100vw;
+    height: 100vh;
+}
 
 
 body {
     font-family: 'Montserrat', sans-serif, 'Taviraj', serif;
     background-color: #FFEAC7;
-    width: 100vh;
+    
+    
     
 }
 
@@ -45,7 +50,7 @@ button {
 }
 
 .container {
-    margin: 8rem 50%;
+    margin: 10rem auto;
     padding: 1.2rem;
     width: 90vw;
     max-width: 35rem;

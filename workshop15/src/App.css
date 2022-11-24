@@ -1,0 +1,258 @@
+:root {
+  --main-font: 'Chakra Petch', sans-serif;
+  /* Iceberg (#6DBFD1), Glaucous (#5C7EAB), Coral Reef (#FF7D63), 
+  Rajah (#FFAC63) and Topaz (#FFCB70) */
+  --color-iceberg: #6DBFD1;
+  --color-glaucous :#5C7EAB;
+  --color-coral: #FF7D63;
+  --color-rajah: #FFAC63;
+  --color-topaz: #FFCB70;
+  /*  Eton Blue (#9FCC9F), Green Sheen (#74AB8D), Rhythm (#726FA3), 
+  Light Steel Blue (#AECFDF) and Azureish White (#CCEBE7). */
+  --color-eton-blue: #9FCC9F;
+  --color-green-sheen: #74AB8D;
+  --color-rhytm: #726FA3;
+  --color-light-steel-blue: #aecfdf;
+  --color-azureish-white: #ccebe7;
+}
+
+* {
+  box-sizing: border-box;
+  /* ซ่อนการ scroll หน้าเว๊ปไว้ */
+  /* overflow: hidden; */
+}
+
+body {
+  background: var(--color-iceberg);
+}
+
+.header {
+  background: var(--color-topaz);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  font-family: var(--main-font);
+  color: var(--color-coral);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2%;
+  box-shadow: 5px 5px var(--color-glaucous);
+}
+.header h1 {
+  /* text-shadow: 2px 2px var(--color-rhytm); */
+}
+
+/* HeaderCart */
+.button {
+  border: none;
+  font: inherit;
+  background: var(--color-coral);
+  color: var(--color-topaz);
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 0.75rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 5px 5px var(--color-glaucous);
+  
+}
+
+
+.badge {
+  background: var(--color-iceberg);
+  padding: 0.2rem 1rem;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  margin-left: 20px;
+  transition: transform .4s;
+}
+.badge:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  box-shadow: 2.5px 2.5px 1px var(--color-rhytm);
+}
+
+a {
+  color:var(--color-topaz);
+  text-decoration: none; /* no underline */
+}
+
+/* Cart */
+.shopping-cart {
+  width:  1024px;
+  height: 900px;
+  background: var(--color-azureish-white);
+  margin: 150px auto;
+  border-radius: 12px;
+  box-shadow: 5px 8px var(--color-rhytm);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  height: 60px;
+  border-bottom: 2px solid var(--color-light-steel-blue);
+  padding: 20px 30px;
+  font-family: var(--main-font);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-rajah);
+  text-shadow: 1px 2px 1px var(--color-coral);
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  height: 60px;
+  border-top: 2px solid var(--color-light-steel-blue);
+  padding: 20px 30px;
+  font-family: var(--main-font);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-rajah);
+  text-align: end;
+  text-shadow: 1px 3px 1px var(--color-topaz);
+}
+.shopping-cart2 {
+  width:  640px;
+  height: 480px;
+  background: var(--color-azureish-white);
+  margin: 150px auto;
+  border-radius: 12px;
+  box-shadow: 5px 8px var(--color-rhytm);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty {
+  /* height: 100px; */
+  border-top: 2px solid var(--color-topaz);
+  padding: 0px 30px;
+  font-size: 80px;
+  font-weight: 800;
+  font-family: var(--main-font);
+  color: var(--color-coral);
+}
+
+/* CartItem */
+.item {
+  padding: 5px 30px;
+  margin: 5px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+}
+
+.product_image {
+  margin-right: 50px;
+}
+
+.product_image img {
+  width: 100px;
+  height: 100px;
+  box-shadow: 3px 3px lightgrey;
+  border-radius: 3px;
+  transition: transform .2s; /* Animation */
+  cursor: pointer;
+}
+
+.product_image img:hover {
+  transform: scale(1.6);
+  box-shadow: 4px 4px 1px grey;
+}
+
+  /* เข้าไปที่สินค้าindex ที่ 3 คือตัวที่ 2 */
+.item:nth-child(4) {
+  border-top: 1px solid var(--color-light-steel-blue);
+  border-bottom: 1px solid var(--color-light-steel-blue);
+}
+.item:nth-child(3) {
+  border-top: 1px solid var(--color-light-steel-blue);
+}
+.item:nth-child(5) {
+  border-bottom: 1px solid var(--color-light-steel-blue);
+}
+
+.descriptiton {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+  margin-right: 60px;
+  width: 400px;
+  font-family: var(--main-font);
+  font-weight: 500;
+}
+font
+
+.descriptiton span{
+  display: block;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.descriptiton span:last-child {
+  font-weight: 300;
+  margin-top: 8px;
+}
+.item-group-3 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--main-font);
+}
+.plus,.minus {
+  width: 25px;
+  height: 22px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.plus:hover, .minus:hover  {
+  transform: scale(1.2);
+}
+
+.remove {
+  transition: 0.2s;
+}
+.remove img:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+
+.plus {
+  background: var(--color-eton-blue);
+  /* box-shadow: 1px 1px var(--color-green-sheen); */
+}
+.minus {
+  background: var(--color-coral);
+  /* box-shadow: 1px 1px var(--color-green-sheen); */
+}
+  /* แก้บัคปุ่ม - กับ + ไม่เท่ากัน */
+.minus img {
+  margin-bottom: 3px;
+}
+
+.total-price {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.quantity input{
+  border: none;
+  text-align: center;
+  width: 35px;
+  font-family: var(--main-font);
+  font-weight: 300;
+  font-size: 16px;
+  
+}
