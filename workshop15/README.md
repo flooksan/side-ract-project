@@ -1,5 +1,5 @@
 # Info
-Workshop 15 cart item shopping use basic hook (useState,useEffect) custom hook (useContext,useReducer)
+Workshop 15 cart item shopping use basic hook (useState,useEffect) custom hook (useContext,useReducer) allocate file
 
 Thank you :)
 
