@@ -1,38 +1,98 @@
-.App {
+:root {
+  --main-font: 'Roboto', 'Noto Sans Thai';
+  /* 
+  The Whispering Weather Color Scheme palette has 6 colors which are Picton Blue (#3BAFE5), 
+  Cornflower (#95D9F2), White (#FFFFFF), Crayola's Dandelion (#FFD573), 
+  UCLA Gold (#FFB400) and Heat Wave (#FE7701).
+  */
+  --color-pictonblue: #3BAFE5;
+  --color-cornflower: #95D9F2;
+  --color-crayoladandelion: #FFD573;
+  --color-uclagold: #FFB400;
+  --color-heatwave: #FE7701;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin:  0;
   text-align: center;
+  font-family: var(--main-font);
+  color: white;
+  /* background: var(--color-pictonblue); */
+  background-image: linear-gradient(to left bottom, #95d9f2, #81cfee, #6bc4eb, #55bae8, #3bafe5);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+section {
+  margin-top: 8%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card {
+  width: 500px;
+  box-shadow: 0px 8px 2px grey;
+  /* box-shadow: 1px 1px black; */
+}
+
+.weather {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  background-color: var(--color-uclagold);
+  padding: 20px 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
 }
 
-.App-link {
-  color: #61dafb;
+.weather h1 {
+  margin: 2px;
+  font-size: 44px;
+  text-shadow: 1px 2px  saddlebrown;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.location {
+  color: white;
+  width: 100%;
+}
+
+/* .img-sun img {
+  width: 100px;
+  margin: 5px auto;
+  color: linear-gradient(to right bottom, #fe7701, #ff8700, #ff9600, #ffa500, #ffb400);
+} */
+
+.city {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 32px;
+  text-shadow: 1px 3px 3px grey;
+}
+
+.state{
+  margin-top: 0;
+}
+
+.info {
+  display: flex;
+}
+
+/* เลือกไปที่ทุก element ใน class info */
+.info *{ 
+  padding: 20px;
+  flex: 1;
+  color: var(--color-pictonblue);
+  background: white;
+}
+
+.status, .humidity {
+  border-right: 1px  solid var(--color-heatwave);
+  border-radius: 1px;
 }
