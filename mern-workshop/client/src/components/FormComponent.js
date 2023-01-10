@@ -2,17 +2,22 @@ import React,{ useState } from 'react'
 import Navbar from './Navbar';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css' // react-quill theme มีหลาย theme อ่าน doc ได้
+import { getUser, getToken } from '../services/authorize';
 
 function FormComponent() {
     // State collect title,content and author
     const [state,setState] = useState({
         title:"",
-        content:"",
-        author:"",
+        author:getUser(),
     });
 
     //Destructure เพื่อเอาไปใช้ง่ายๆ
-    const {title,content,author} = state
+    const {title,author} = state
+
+    // Content with react-quill
+    const [content,setContent] = useState('')
 
     // Set value state
     const inputValue = fieldName => event => { 
@@ -24,6 +29,11 @@ function FormComponent() {
         //เอาทุกตัวมา spread แล้วจากนั้นเราพิมพ์ไปที่ไหนตามค่า fieldName มันจะไป set ค่า field นั้นเป็นค่าที่พิมพ์
     }
     
+    // React-quill function
+    const submitContent=(e)=> {
+        setContent(e)
+    }
+    
     // Fuction
     const submitForm =(e)=> { //function ที่จะเอา object ไปเก็บไว้ที่ฐานข้อมูล
         e.preventDefault();
@@ -32,7 +42,14 @@ function FormComponent() {
         
         // บันทึกข้อมูลโดย axios
         axios
-        .post(`${process.env.REACT_APP_API}/create`,{title,content,author}) 
+        .post(`${process.env.REACT_APP_API}/create`, 
+            {title,content,author},
+            {   // Send header to server for authorize
+                headers: {
+                    authorization: `Bearer ${getToken()}`
+                }
+            }
+            ) 
             // เรียก axios.method(`URL/path`) แล้วส่งค่า {title,content,author} เข้าไป
         .then(response => {
             //axios เป็น promise เราเลยดักด้วย .then
@@ -41,7 +58,8 @@ function FormComponent() {
                 'Saved in database!',
                 'success'
               )
-            setState({...state,title:"",content:"",author:""}) //set ค่าให้เป็นค่าว่าง
+            setState({...state,title:"",author:""}) //set ค่าให้เป็นค่าว่าง
+            setContent('')
 
         }).catch(err => {
             //error เอามาจาก controller ใน toppic validate จะมี error สองอันเป็น json คือ error !title and error !content
@@ -53,6 +71,8 @@ function FormComponent() {
               )
         })
     }
+
+    
   
     return (
     <div className='cotainer p-5'>
@@ -72,11 +92,13 @@ function FormComponent() {
             
             <div className="form-group mb-3">
                 <label>Content : </label>
-                <textarea className='form-control' 
-                    value={content} 
-                    onChange={inputValue("content")}
-                ></textarea>
-                {/* <input type="area" className='form-control' /> */}
+                <ReactQuill 
+                    value={content}
+                    onChange={submitContent}
+                    theme='snow'
+                    className='pb-5 mb-3'
+                    placeholder='Write content detail '
+                />
             </div>
             
             <div className="form-group mb-3">

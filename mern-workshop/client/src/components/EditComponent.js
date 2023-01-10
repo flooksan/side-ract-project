@@ -2,18 +2,28 @@ import React,{ useState,useEffect } from 'react'
 import Navbar from './Navbar';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
+import { getToken } from '../services/authorize';
+
 
 function EditComponent(props) {
     // State collect title,content and author
     const [state,setState] = useState({
         title:"",
-        content:"",
+        
         author:"",
         slug:"",
     });
 
     //Destructure เพื่อเอาไปใช้ง่ายๆ
-    const {title,content,author,slug} = state
+    const {title,author,slug} = state
+
+    const [content,setContent] = useState('')
+
+    const submitContent=(e)=> {
+            setContent(e)
+        }
 
     // Set value state
     const inputValue = fieldName => event => { 
@@ -33,6 +43,7 @@ function EditComponent(props) {
             const {title,content,author,slug} = response.data
             setState({title,content,author,slug})  // เอา slug มาเพื่อเวลาเราไปเปลี่ยนข้อมูล title,content,author มันจะได้เอาไป save ถูกตัว คือเอาไป save ทับทั้ง 3 ตัวใน slug เดิม
             // เขียนเป็น setState({...state,title,content,author,slug}) ก็ได้
+            setContent(content) // เราทำ Reactquill textarea ใหม่จึงมาทำ content แยก
         }).catch(err => Swal('Error',`${err}!!`,'error'))
         // eslint-disable-next-line
       }, [])
@@ -52,11 +63,13 @@ function EditComponent(props) {
             
             <div className="form-group mb-3">
                 <label>Content : </label>
-                <textarea className='form-control' 
-                    value={content} 
-                    onChange={inputValue("content")}
-                ></textarea>
-                {/* <input type="area" className='form-control' /> */}
+                <ReactQuill 
+                    value={content}
+                    onChange={submitContent}
+                    theme='snow'
+                    className='pb-5 mb-3'
+                    placeholder='Write content detail '
+                />
             </div>
             
             <div className="form-group mb-3">
@@ -80,7 +93,12 @@ function EditComponent(props) {
               
               // บันทึกข้อมูลโดย axios
               axios // frontend : axios.put /server/blog/slug >> backend : router.put('/blog/:slug',update)
-              .put(`${process.env.REACT_APP_API}/blog/${slug}`,{title,content,author}) 
+              .put(`${process.env.REACT_APP_API}/blog/${slug}`, {title,content,author},
+              {   // Send header to server for authorize
+                headers: {
+                    authorization: `Bearer ${getToken()}`
+                }
+            }) 
                   // เรียก axios.put`URL/path/slug`) แล้วส่งค่า {title,content,author} เข้าไปเพื่ออัพเดทการแก้ไขค่าของเรา
               .then(response => {
                   //axios เป็น promise เราเลยดักด้วย .then
@@ -110,7 +128,7 @@ function EditComponent(props) {
         <Navbar/>
         <h1>Edit Blog</h1>
         {showUpdateForm()} 
-        {JSON.stringify(slug)}
+        {/* {JSON.stringify(slug)} */}
         {/* showUpdateForm แสดงผลน่าตาของตัวอัพเดทข้อมูล เราสร้างเป็นฟังก์ชัน component ไว้ด้านบน return*/}
     </div>
   )

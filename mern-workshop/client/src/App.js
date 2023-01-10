@@ -3,7 +3,8 @@ import Navbar from './components/Navbar'
 import axios from 'axios' //ใช้ดึงข้อมูล
 import { useState,useEffect } from 'react' 
 import Swal from 'sweetalert2'
-import { Link } from 'react-router-dom';
+import { getUser, getToken } from './services/authorize';
+
 // import {Link} from "react-router-dom"
 
 function App() {
@@ -18,8 +19,20 @@ function App() {
     }).catch(err => Swal('Error',`${err}!!`,'error')) ; 
   }
 
+  // Fetch Data Async-await
+  async function upDateData() {
+      try {
+          const response = await axios.get(`${process.env.REACT_APP_API}/blogs`)
+          setBlogs(response.data)
+          // console.log('Async function',response.data)
+      } catch (err) { Swal('Error',`${err}!!`,'error') }
+  }
+    
+
   // useEffect ให้มันfetchDataแค่ตอนเปิดหน้าเว๊ป
-  useEffect(() => fetchData(),[])
+  useEffect(() => {upDateData()}
+  // eslint-disable-next-line
+  ,[])
   
   // Function 
     // confirm delete
@@ -42,7 +55,12 @@ function App() {
   }
 
   function deleteBlog (slug) {
-    axios.delete(`${process.env.REACT_APP_API}/blog/${slug}`)
+    axios.delete(`${process.env.REACT_APP_API}/blog/${slug}`, 
+      {   // Send header to server for authorize
+        headers: {
+            authorization: `Bearer ${getToken()}`
+        }
+      })
     .then(response => {
       Swal.fire({
         title: `Deleteก ${response} success!`,icon: 'success',
@@ -67,9 +85,13 @@ function App() {
                                       {/* แสดงผลบทความไม่เกิน 180 ตัวอักษร */}
               <div className='text-black-50'>Author : {item.author}  ,
                Time : {new Date(item.createdAt).toLocaleString()}</div>
-              <a className='btn btn-outline-primary' href={`/blog/edit/${item.slug}`}>Edit</a> &nbsp;
+              { getUser() && (
+                <div>
+                <a className='btn btn-outline-primary' href={`/blog/edit/${item.slug}`}>Edit</a> &nbsp;
               {/* &nbsp; (Non Breaking Space) */}
               <button className='btn btn-outline-danger' onClick={()=>confirmDelete(item.slug)} >Delete</button>
+                </div>
+              ) }
             </div><hr/>
           </div>
         )

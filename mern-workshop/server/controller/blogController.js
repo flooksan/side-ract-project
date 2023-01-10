@@ -78,7 +78,7 @@ exports.update = (req,res) => {
     // db.collection.findOneAndUpdate( filter, update, options )
     blogSchema.findOneAndUpdate({slug},{title,content,author},{new:true}).exec((err,blog) => {
         if (err) {  console.log(err)  }
-        res.json(blog)
+        res.send(blog) // res.json ก็ได้
     })
 }
 
